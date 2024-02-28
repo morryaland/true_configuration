@@ -26,11 +26,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'preservim/nerdtree'
 Plug 'vim-scripts/c.vim'
 Plug 'ycm-core/YouCompleteMe'
-Plug 'EdenEast/nightfox.nvim'
 Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'tribela/vim-transparent'
+Plug 'fcpg/vim-orbital'
 
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
@@ -46,7 +46,7 @@ let g:ycm_enable_semantic_highlighting=1
 let g:ycm_enable_inlay_hints=1
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
-colorscheme carbonfox
+colorscheme orbital
 
 set expandtab
 set smarttab
