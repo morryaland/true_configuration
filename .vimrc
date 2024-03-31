@@ -5,7 +5,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " On-demand loading
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -32,9 +31,6 @@ Plug '~/my-prototype-plugin'
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
-
-autocmd VimEnter * NERDTree | wincmd p
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 let g:ycm_enable_semantic_highlighting=1
 let g:ycm_enable_inlay_hints=1
