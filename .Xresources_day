@@ -1,7 +1,0 @@
-URxvt.background: #000000
-URxvt.foreground: #fce8c5
-URxvt.scrollBar: false
-URxvt.font: xft:consolas
-urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0000/ee00
-Xcursor.theme: JYxNeon
