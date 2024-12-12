@@ -12,7 +12,9 @@ require "paq" {
   "hrsh7th/vim-vsnip",
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "jackguo380/vim-lsp-cxx-highlight",
-  "m-pilia/vim-ccls",
+  "ranjithshegde/ccls.nvim",
+  'Xuyuanp/scrollbar.nvim',
+  'karb94/neoscroll.nvim',
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	"slugbyte/lackluster.nvim",
 	"nvim-lualine/lualine.nvim",
@@ -21,6 +23,7 @@ require "paq" {
 	{ 'nvim-tree/nvim-web-devicons', opt = true },
   { 'nvim-lua/plenary.nvim', opt = true },
 }
+vim.opt.mouse=""
 require("lackluster").setup({
 	tweak_syntax = {
         string = "default",
@@ -43,8 +46,8 @@ require("lackluster").setup({
 vim.cmd.colorscheme("lackluster")
 require('lualine').setup({
 	options = {
-	  theme = "lackluster",
-	},
+	  theme = "lackluster"
+},
 })
 local lsp_zero = require('lsp-zero')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -72,13 +75,15 @@ lspconfig.ccls.setup {
   init_options = {
     cache = {
       directory = ".ccls-cache";
-    };
+    },
     highlight = {
-      lsRanges = true;
+    lsRanges = true;
     }
   }
 }
-lspconfig.tsserver.setup { capabilities = capabilities }
+require("ccls").setup({})
+lspconfig.ts_ls.setup { capabilities = capabilities }
+lspconfig.sqlls.setup{}
 require("typescript-tools").setup {}
 require("cmp_git").setup()
 local cmp = require('cmp')
@@ -103,6 +108,7 @@ cmp.setup({
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
     }),
 })
+require('neoscroll').setup({})
 vim.wo.number = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -119,3 +125,12 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.opt_local.smarttab = true
     end
 });
+vim.cmd([[
+augroup ScrollbarInit
+  autocmd!
+  autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
+  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+augroup end
+let g:scrollbar_excluded_filetypes = ['nerdtree']
+]])
