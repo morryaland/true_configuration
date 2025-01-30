@@ -13,6 +13,7 @@ require "paq" {
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "jackguo380/vim-lsp-cxx-highlight",
   "ranjithshegde/ccls.nvim",
+  "mfussenegger/nvim-jdtls",
   'Xuyuanp/scrollbar.nvim',
   'karb94/neoscroll.nvim',
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
@@ -83,7 +84,9 @@ lspconfig.ccls.setup {
 }
 require("ccls").setup({})
 lspconfig.ts_ls.setup { capabilities = capabilities }
-lspconfig.sqlls.setup{}
+lspconfig.jdtls.setup { capabilities = capabilities }
+lspconfig.eslint.setup { capabilities = capabilities }
+lspconfig.sqlls.setup{ capabilities = capabilities }
 require("typescript-tools").setup {}
 require("cmp_git").setup()
 local cmp = require('cmp')
